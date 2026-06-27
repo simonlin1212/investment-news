@@ -20,7 +20,7 @@
 
 ## What Is This
 
-**Investment News is a locally-run "investment-sector news dashboard." It calls your own LLM to distill the latest developments across 12 investment sectors — drawn from 100+ authoritative sources worldwide — into a daily set of key points (in Chinese) with translations, presented in a single browser dashboard.**
+**Investment News covers 100+ authoritative sources worldwide across 12 investment sectors. It calls your own LLM to distill each sector's latest developments into a daily set of key points (in Chinese) with translations, presented in a single local browser dashboard.**
 
 Unlike a typical news aggregator that buries you in feeds, its core is **having the AI do the reading and distillation**: 3–5 "today's key points" pinned at the top of each sector, aggregated and deduplicated across sources, so you can grasp each sector at a glance and drill down to the original when needed. Fetching runs **locally** (pure Python stdlib); the AI uses **your own** Claude subscription ($0) or any API key; **data stays on your machine — no account, no hosting.**
 
