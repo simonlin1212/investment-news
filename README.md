@@ -3,8 +3,8 @@
 **中文** · [English](README.en.md)
 
 <p align="center">
-  <b>聚焦你关注的投资赛道，由你自己的 AI 每日提炼为关键要点 —— 全程本地运行，零 API key。</b><br>
-  AI distills daily key points across the investment sectors you follow — fully local, your own model, zero API key.
+  <b>覆盖 100+ 权威信息源、12 大投资赛道，AI 每日提炼为中文要点 —— 全程本地运行，零 API key。</b><br>
+  100+ authoritative sources across 12 investment sectors, distilled into daily Chinese key points by your own AI — fully local, zero API key.
 </p>
 
 <p align="center">

@@ -3,7 +3,7 @@
 [中文](README.md) · **English**
 
 <p align="center">
-  <b>AI distills daily key points across the investment sectors you follow — fully local, your own model, zero API key.</b>
+  <b>100+ authoritative sources across 12 investment sectors, distilled into daily Chinese key points by your own AI — fully local, zero API key.</b>
 </p>
 
 <p align="center">
