@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+
+# 临时/调研产物
+scripts/_*
+*.bak

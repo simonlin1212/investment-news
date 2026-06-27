@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投资资讯 · Investment News</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --background:220 20% 5%; --foreground:220 10% 92%;
+    --card:220 20% 8%; --muted:220 20% 13%; --muted-foreground:220 10% 55%;
+    --border:220 20% 18%; --primary:27 90% 52%; --radius:.5rem;
+  }
+  *{box-sizing:border-box; margin:0; padding:0; border-color:hsl(var(--border));}
+  html,body{height:100%;}
+  body{font-family:'Inter',system-ui,sans-serif; background:hsl(var(--background));
+    color:hsl(var(--foreground)); -webkit-font-smoothing:antialiased; font-size:14px;}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;}
+  ::-webkit-scrollbar{width:7px;height:7px;}
+  ::-webkit-scrollbar-thumb{background:hsl(var(--border));border-radius:6px;}
+  ::-webkit-scrollbar-thumb:hover{background:hsl(var(--muted-foreground));}
+
+  .app{display:flex; height:100vh; overflow:hidden;}
+
+  /* ---- 侧边栏 ---- */
+  .sidebar{width:264px; flex-shrink:0; background:hsl(var(--card));
+    border-right:1px solid hsl(var(--border)); display:flex; flex-direction:column;}
+  .brand{display:flex; align-items:center; gap:9px; padding:16px;
+    border-bottom:1px solid hsl(var(--border)); font-weight:700; font-size:15px; letter-spacing:-.01em;}
+  .brand .logo{width:22px; height:22px; border-radius:6px;
+    background:hsl(var(--primary)); display:grid; place-items:center; color:#fff; font-size:13px; font-weight:800;}
+  .brand small{color:hsl(var(--muted-foreground)); font-weight:500; font-size:11px;}
+  .refresh{margin-left:auto; width:30px; height:30px; flex-shrink:0; border-radius:8px; padding:0;
+    border:1px solid hsl(var(--border)); background:transparent; color:hsl(var(--muted-foreground));
+    cursor:pointer; display:grid; place-items:center; transition:all .14s;}
+  .refresh:hover{color:hsl(var(--primary)); border-color:hsl(var(--primary)/.45); background:hsl(var(--primary)/.10);}
+  .refresh .ri{font-size:17px; line-height:1; display:block;}
+  .refresh.spin{color:hsl(var(--primary)); border-color:hsl(var(--primary)/.45); pointer-events:none;}
+  .refresh.spin .ri{animation:spin .9s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  /* ---- 右上角 GitHub ---- */
+  .gh{position:fixed; top:14px; right:18px; z-index:50; width:34px; height:34px; border-radius:9px;
+    display:grid; place-items:center; color:hsl(var(--muted-foreground));
+    border:1px solid hsl(var(--border)); background:hsl(var(--card)/.65); backdrop-filter:blur(6px);
+    transition:all .14s;}
+  .gh:hover{color:hsl(var(--foreground)); border-color:hsl(var(--primary)/.5); background:hsl(var(--primary)/.12);}
+  .nav{flex:1; overflow:auto; padding:8px;}
+  .nav-label{font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    color:hsl(var(--muted-foreground)); padding:10px 12px 6px;}
+  .nav-item{display:flex; align-items:center; gap:11px; padding:8px 12px; border-radius:7px;
+    cursor:pointer; color:hsl(var(--muted-foreground)); transition:all .12s; user-select:none;}
+  .nav-item:hover{background:hsl(var(--muted)); color:hsl(var(--foreground));}
+  .nav-item .dot{width:9px; height:9px; border-radius:50%; flex-shrink:0;}
+  .nav-item .nm{flex:1; font-size:13.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .nav-item .cnt{font-size:11px; color:hsl(var(--muted-foreground));}
+  .nav-item.active{font-weight:600;} /* 颜色由 JS 按行业色注入 */
+  .foot{border-top:1px solid hsl(var(--border)); padding:12px 16px;
+    font-size:11px; color:hsl(var(--muted-foreground)); line-height:1.6;}
+
+  /* ---- 主区 ---- */
+  .main{flex:1; overflow:auto;}
+  .head{padding:26px 34px 18px; border-bottom:1px solid hsl(var(--border)); position:sticky; top:0;
+    background:hsl(var(--background)/.85); backdrop-filter:blur(8px); z-index:5;}
+  .head .ttl{display:flex; align-items:center; gap:12px;}
+  .head .bdg{width:30px; height:30px; border-radius:9px; display:grid; place-items:center; font-size:15px;}
+  .head h1{font-size:24px; font-weight:700; letter-spacing:-.02em;}
+  .head .sub{margin-top:7px; font-size:12.5px; color:hsl(var(--muted-foreground));}
+  .head .sub b{color:hsl(var(--foreground));}
+  .head .sub .pill{display:inline-block; padding:1px 8px; border-radius:999px; margin-left:6px;
+    font-size:11px; font-family:'JetBrains Mono',monospace;}
+
+  /* ---- 长条列表(一行一条) ---- */
+  .list{padding:16px 30px 60px; display:flex; flex-direction:column; gap:6px; max-width:1280px;}
+  .row{display:flex; align-items:center; gap:14px; padding:11px 16px; border:1px solid hsl(var(--border));
+    border-radius:10px; background:hsl(var(--card)); transition:border-color .14s, background .14s;}
+  .row:hover{background:hsl(var(--muted)/.30);}
+  .row .rdot{width:8px; height:8px; border-radius:50%; flex-shrink:0;}
+  .row .rbody{flex:1; min-width:0;}
+  .row .rt{font-weight:600; font-size:14.5px; line-height:1.4; letter-spacing:-.005em;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .row a.rt{color:inherit; text-decoration:none; display:block;}
+  .row a.rt:hover{color:hsl(var(--primary));}
+  .row .rs{margin-top:2px; font-size:12px; line-height:1.4; color:hsl(var(--muted-foreground));
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .row .rmeta{flex-shrink:0; display:flex; align-items:center; gap:12px;}
+  .row .rsrc{font-family:'JetBrains Mono',monospace; font-size:11px; padding:2px 9px; border-radius:6px;
+    font-weight:500; white-space:nowrap; max-width:160px; overflow:hidden; text-overflow:ellipsis;}
+  .row .rtm{font-family:'JetBrains Mono',monospace; font-size:12px; color:hsl(var(--muted-foreground));
+    white-space:nowrap; min-width:84px; text-align:right; font-variant-numeric:tabular-nums;}
+  .empty{padding:50px 34px; color:hsl(var(--muted-foreground)); font-size:13px;}
+  /* ---- AI 今日要点卡 ---- */
+  .digest{margin:18px 30px 2px; max-width:1280px; border:1px solid; border-radius:14px; padding:16px 20px 15px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04);}
+  .digest .dh{font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.06em;
+    margin-bottom:12px; display:flex; align-items:center; gap:7px;}
+  .digest .dh .dn{color:hsl(var(--muted-foreground)); font-weight:400; letter-spacing:0;}
+  .digest ul{list-style:none; display:flex; flex-direction:column; gap:9px;}
+  .digest li{display:flex; align-items:flex-start; gap:11px; font-size:14.5px; line-height:1.5; color:hsl(var(--foreground));}
+  .digest li .b{width:6px; height:6px; border-radius:50%; margin-top:7px; flex-shrink:0;}
+  .digest li .pt{flex:1; min-width:0;}
+  .digest li .dj{flex-shrink:0; text-decoration:none; font-size:14px; font-weight:700; opacity:.4;
+    margin-top:0; padding:0 2px; transition:opacity .12s, transform .12s; line-height:1.5;}
+  .digest li:hover .dj{opacity:.85;}
+  .digest li .dj:hover{opacity:1; transform:translate(1px,-1px);}
+  .row .ren{margin-top:3px; font-size:11.5px; line-height:1.35; color:hsl(var(--muted-foreground));
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; opacity:.8;}
+</style>
+</head>
+<body>
+<a class="gh" href="https://github.com/simonlin1212/investment-news" target="_blank" rel="noopener" title="在 GitHub 上查看 / Star">
+  <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 012-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+</a>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="logo">▲</span>
+      <div class="bt">投资资讯<br><small>Investment News</small></div>
+      <button class="refresh" id="refreshBtn" title="刷新:重新抓取 + AI 要点 + 翻译"><span class="ri">⟳</span></button>
+    </div>
+    <div class="nav" id="nav"><div class="nav-label">赛道 / Sectors</div></div>
+    <div class="foot" id="foot"></div>
+  </aside>
+  <main class="main">
+    <div class="head" id="head"></div>
+    <div id="board"></div>
+  </main>
+</div>
+<script>
+function boot(){
+  var D = window.DATA || {industries:[]};
+  var inds = D.industries || [];
+  var nav = document.getElementById('nav');
+  var active = inds.length ? inds[0].key : null;
+
+  function hexA(hex, a){ // #rrggbb + alpha(0-1) -> rgba
+    var n = hex.replace('#','');
+    var r=parseInt(n.substr(0,2),16), g=parseInt(n.substr(2,2),16), b=parseInt(n.substr(4,2),16);
+    return 'rgba('+r+','+g+','+b+','+a+')';
+  }
+
+  // 侧边栏
+  inds.forEach(function(ind){
+    var el = document.createElement('div');
+    el.className = 'nav-item'; el.dataset.key = ind.key;
+    el.innerHTML = '<span class="dot" style="background:'+ind.accent+'"></span>'
+      + '<span class="nm">'+ind.name+'</span>'
+      + '<span class="cnt">'+ind.total+'</span>';
+    el.onclick = function(){ setActive(ind.key); };
+    nav.appendChild(el);
+  });
+
+  document.getElementById('foot').innerHTML =
+    '<b style="color:hsl(var(--foreground))">'+(D.stats?D.stats.total_sources:'–')+'</b> 个源 · '
+    + inds.length + ' 赛道<br><span style="opacity:.72">本地运行 · 你的 AI</span>'
+    + '<br><span style="opacity:.5;font-size:10px">仅资讯，非投资建议 · Not financial advice</span>';
+
+  function setActive(key){
+    active = key;
+    var ind = inds.find(function(x){return x.key===key;});
+    // 侧边栏高亮
+    document.querySelectorAll('.nav-item').forEach(function(n){
+      var on = n.dataset.key===key; n.classList.toggle('active', on);
+      n.style.background = on ? hexA(ind.accent,0.12) : '';
+      n.querySelector('.nm').style.color = on ? ind.accent : '';
+    });
+    renderMain(ind);
+  }
+
+  function renderMain(ind){
+    var ac = ind.accent;
+    document.getElementById('head').innerHTML =
+      '<div class="ttl"><span class="bdg" style="background:'+hexA(ac,0.14)+';color:'+ac+'">●</span>'
+      + '<h1>'+ind.name+'</h1></div>'
+      + '<div class="sub">共 <b>'+ind.total+'</b> 个信息源 · 本栏 <b>'+ind.items.length+'</b> 条'
+      + '<span class="pill" style="background:'+hexA(ac,0.12)+';color:'+ac+'">最近 '+(D.recent_days||120)+' 天</span>'
+      + ' · 更新 '+(D.generated_at||'')+' · 本地抓取';
+    var board = document.getElementById('board');
+    if(!ind.items.length){ board.className=''; board.innerHTML = '<div class="empty">该行业暂未抓到条目。</div>'; return; }
+
+    // AI 今日要点卡
+    var pts = ind.points || [];
+    var digest = pts.length ? (
+      '<div class="digest" style="border-color:'+hexA(ac,0.30)+';background:'+hexA(ac,0.06)+'">'
+      + '<div class="dh" style="color:'+ac+'">✦ AI 今日要点</div>'
+      + '<ul>' + pts.map(function(p){
+          var t = (typeof p === 'string') ? p : (p.t||'');
+          var url = (p && typeof p === 'object') ? (p.url||'') : '';
+          var jump = url ? '<a class="dj" href="'+url+'" target="_blank" rel="noopener" title="跳转原文" style="color:'+ac+'">↗</a>' : '';
+          return '<li><span class="b" style="background:'+ac+'"></span><span class="pt">'+esc(t)+'</span>'+jump+'</li>';
+        }).join('') + '</ul></div>'
+    ) : '';
+
+    // 新闻行(中文标题 + 原文小字)
+    var rows = ind.items.map(function(it){
+      var hasZh = it.zh && it.zh.trim();
+      var primary = esc(hasZh ? it.zh : it.title);
+      var secondary = hasZh ? esc(it.title) : esc(it.summary||'');
+      var link = it.url ? '<a class="rt" href="'+it.url+'" target="_blank" rel="noopener">'+primary+'</a>'
+                        : '<span class="rt">'+primary+'</span>';
+      return '<div class="row" onmouseover="this.style.borderColor=\''+hexA(ac,0.45)+'\'" onmouseout="this.style.borderColor=\'\'">'
+        + '<span class="rdot" style="background:'+ac+'"></span>'
+        + '<div class="rbody">' + link
+        + (secondary?'<div class="'+(hasZh?'ren':'rs')+'">'+secondary+'</div>':'')
+        + '</div>'
+        + '<div class="rmeta">'
+        +   '<span class="rsrc" style="background:'+hexA(ac,0.12)+';color:'+ac+'">'+esc(it.source)+'</span>'
+        +   '<span class="rtm">'+esc(it.time||'—')+'</span>'
+        + '</div></div>';
+    }).join('');
+
+    board.className='';
+    board.innerHTML = digest + '<div class="list">' + rows + '</div>';
+  }
+  function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  if(active) setActive(active);
+
+  var rb = document.getElementById('refreshBtn');
+  if(rb) rb.onclick = function(){
+    if(rb.classList.contains('spin')) return;
+    rb.classList.add('spin');
+    fetch('/api/refresh', {method:'POST'})
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if(d && d.ok){ location.reload(); }
+        else { rb.classList.remove('spin'); alert('刷新失败:\n'+((d&&d.error)||'未知错误')); }
+      })
+      .catch(function(e){ rb.classList.remove('spin');
+        alert('刷新失败: '+e+'\n(刷新需用 server.py 启动看板,纯静态服务没有刷新接口)'); });
+  };
+}
+var _s=document.createElement('script'); _s.src='data.js?t='+Date.now(); _s.onload=boot;
+_s.onerror=function(){document.getElementById('board').innerHTML='<div class="empty">数据加载失败</div>';};
+document.head.appendChild(_s);
+</script>
+</body>
+</html>

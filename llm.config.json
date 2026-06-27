@@ -1,0 +1,21 @@
+{
+  "_说明": "大模型 provider 二选一。Agent 应据此问使用者用哪种,改 provider 即可。",
+  "_provider可选": [
+    "claude-cli  —— 用本机 Claude 订阅,零成本($0),需先装 Claude Code 并 `claude login`,仅本机可用(推荐)",
+    "api         —— 用 OpenAI 兼容 API key,按量付费,任意机器可用"
+  ],
+  "provider": "claude-cli",
+
+  "api": {
+    "_常见base_url": {
+      "deepseek": "https://api.deepseek.com",
+      "openai": "https://api.openai.com/v1",
+      "硅基流动": "https://api.siliconflow.cn/v1",
+      "openrouter": "https://openrouter.ai/api/v1"
+    },
+    "base_url": "https://api.deepseek.com",
+    "api_key": "",
+    "api_key_env": "LLM_API_KEY",
+    "model": "deepseek-chat"
+  }
+}
