@@ -21,6 +21,12 @@ BEIJING = timezone(timedelta(hours=8))
 def strip_html(s): return re.sub(r"\s+"," ", re.sub(r"<[^>]+>","", s or "")).strip()
 def local(tag): return tag.split("}")[-1]
 
+def normalize_url(url):
+    """Normalize URL for deduplication: strip trailing slash, query string, and fragment."""
+    if not url: return ""
+    url = url.split("?")[0].split("#")[0].rstrip("/")
+    return url.lower()
+
 def parse_dt(s):
     if not s: return None
     try:
@@ -51,11 +57,11 @@ def fetch(src):
                 elif t in ("pubDate","published","updated","date") and not rawtime: rawtime=(c.text or "").strip()
                 elif t in ("description","summary","content") and not d["summary"]: d["summary"]=strip_html(c.text or "")[:160]
             if not d["title"]: continue
-            blob = (d["title"] + " " + d["summary"]).lower()   # 红线过滤(赌博/加密/预测市场)
+            blob = (d["title"] + " " + d["summary"]).lower()
             if any(k in blob for k in REDLINE): continue
             dt = parse_dt(rawtime)
             if dt is not None:
-                if CUTOFF and dt < CUTOFF: continue          # 旧文剔除
+                if CUTOFF and dt < CUTOFF: continue
                 d["time"] = dt.astimezone(BEIJING).strftime("%m-%d %H:%M")
                 d["ts"] = int(dt.timestamp())
             else:
@@ -87,15 +93,22 @@ def main():
         results = list(ex.map(lambda t: (t[0], fetch(t[1])), tasks))
     for idx, items in results:
         industries[idx]["items"].extend(items)
-    # 每栏按时间倒序(新→旧)
+
+    # 每栏按时间倒序(新→旧)，同 URL 只保留第一条(按时间优先)
     for ind in industries:
-        ind["items"].sort(key=lambda x: x.get("ts",0), reverse=True)
+        seen, unique = set(), []
+        for item in sorted(ind["items"], key=lambda x: x.get("ts", 0), reverse=True):
+            key = normalize_url(item.get("url", ""))
+            if key and key not in seen:
+                seen.add(key)
+                unique.append(item)
+        ind["items"] = unique
 
     data = {"generated_at": datetime.now(BEIJING).strftime("%Y-%m-%d %H:%M"),
             "recent_days":days, "industries":industries,
             "stats":{"industries":len(inds),"total_sources":len(cfg["sources"])}}
     with open(os.path.join(ROOT,"data.js"),"w",encoding="utf-8") as f:
-        f.write("// data.js —— 各行业源真实数据(最近%d天,北京时间,新→旧)。fetch.py 抓取 → digest.py 补 AI 要点+翻译。\n"%days)
+        f.write("// data.js —— 含 AI 要点+中文翻译(claude 订阅生成)。\n")
         f.write("window.DATA = " + json.dumps(data, ensure_ascii=False, indent=1) + ";\n")
     print("最近 %d 天 · 行业 | 源数 | 条数" % days)
     for ind in industries:
