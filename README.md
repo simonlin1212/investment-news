@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="version 1.0.0">
+  <img src="https://img.shields.io/badge/version-1.0.1-blue.svg" alt="version 1.0.1">
   <img src="https://img.shields.io/badge/python-3.7+-blue.svg" alt="Python 3.7+">
   <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="MIT">
   <img src="https://img.shields.io/badge/赛道-12_大方向-orange.svg" alt="12 sectors">

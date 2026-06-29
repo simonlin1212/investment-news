@@ -62,8 +62,9 @@ def fetch(src):
                 d["time"] = "—"
             out.append(d)
         return out
-    except Exception:
-        return []
+    except Exception as e:   # 不再静默吞掉:打出失败源名+原因(超时/非法XML/编码)
+        print("  ⚠️ 源抓取失败 %s: %s" % (src.get("name","?"), str(e)[:80]))
+        return None          # None=出错(区别于 []=成功但近 N 天无新内容)
 
 def main():
     global CUTOFF, REDLINE
@@ -84,8 +85,11 @@ def main():
         for s in pool: tasks.append((i, s))
 
     with ThreadPoolExecutor(max_workers=40) as ex:
-        results = list(ex.map(lambda t: (t[0], fetch(t[1])), tasks))
-    for idx, items in results:
+        results = list(ex.map(lambda t: (t[0], t[1].get("name",""), fetch(t[1])), tasks))
+    failed_sources = []
+    for idx, name, items in results:
+        if items is None:          # 该源抓取出错
+            failed_sources.append(name); continue
         industries[idx]["items"].extend(items)
     # 每栏按时间倒序(新→旧)
     for ind in industries:
@@ -101,6 +105,9 @@ def main():
     for ind in industries:
         print("  %-16s %3d 源 → %d 条" % (ind["name"], ind["total"], len(ind["items"])))
     print("总源:", len(cfg["sources"]), "· 生成:", data["generated_at"])
+    if failed_sources:
+        print("⚠️  %d/%d 个源抓取失败:%s%s" % (len(failed_sources), len(cfg["sources"]),
+              "、".join(failed_sources[:15]), " …" if len(failed_sources) > 15 else ""))
 
 if __name__ == "__main__":
     main()
