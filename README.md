@@ -3,8 +3,8 @@
 **中文** · [English](README.en.md)
 
 <p align="center">
-  <b>覆盖 100+ 权威信息源、12 大投资赛道，AI 每日提炼为中文要点 —— 全程本地运行，零 API key。</b><br>
-  100+ authoritative sources across 12 investment sectors, distilled into daily Chinese key points by your own AI — fully local, zero API key.
+  <b>为 A股投资者追踪全球产业链领先信号 —— 12 大赛道一一对应 A股板块，覆盖 100+ 权威源，AI 每日提炼为中文要点，全程本地、零 API key。</b><br>
+  Tracking the global industry signals behind China A-share sectors — 12 sectors mapped to A-share themes, 100+ authoritative sources, distilled into daily Chinese key points by your own AI, fully local, zero API key.
 </p>
 
 <p align="center">
@@ -21,12 +21,13 @@
 
 ## 这是什么
 
-**Investment News 覆盖全球 100+ 权威信息源和 12 大投资赛道，调用你自己的大模型，将各赛道最新动向每日提炼为中文「今日要点」并完成翻译，统一呈现在一个本地浏览器看板中。**
+**Investment News 是为 A股投资者打造的全球产业链资讯看板。** 半导体、AI、机器人、新能源车、航天…这 12 大赛道一一对应 A股板块，而真正驱动板块的领先信号，往往先出现在全球英文源里。本工具覆盖全球 100+ 权威信息源，调用你自己的大模型，将各赛道最新动向每日提炼为中文「今日要点」并完成翻译，统一呈现在一个本地浏览器看板中。
 
 区别于信息过载的新闻聚合器，其核心在于**由 AI 完成阅读与提炼**：每个赛道置顶 3–5 条「今日要点」，跨源聚合去重，便于快速把握各赛道全貌，并可下钻至原文核实。抓取过程在**本地**完成（纯 Python 标准库），AI 使用**你自己**的 Claude 订阅（$0）或任意 API key，**数据全程留存本机，无需账号，无托管依赖**。
 
 适用场景：
 
+- A股投资者跟踪半导体、AI、新能源车、机器人等板块的全球先行信号，但海外资讯多为英文、且分散在上百个源——本工具把它们汇成一屏中文要点。
 - 需同时跟踪多个投资赛道，但资讯庞杂、难以尽读，且多为英文。
 - 门户与聚合器提供的是离散信息流；真正需要的是「该赛道当日的核心进展」—— 这正是 AI 要点层的职责。
 

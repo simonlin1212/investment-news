@@ -3,7 +3,7 @@
 [中文](README.md) · **English**
 
 <p align="center">
-  <b>100+ authoritative sources across 12 investment sectors, distilled into daily Chinese key points by your own AI — fully local, zero API key.</b>
+  <b>Tracking the global industry signals behind China A-share sectors — 12 sectors mapped to A-share themes, 100+ authoritative sources, distilled into daily Chinese key points by your own AI, fully local, zero API key.</b>
 </p>
 
 <p align="center">
@@ -20,12 +20,13 @@
 
 ## What Is This
 
-**Investment News covers 100+ authoritative sources worldwide across 12 investment sectors. It calls your own LLM to distill each sector's latest developments into a daily set of key points (in Chinese) with translations, presented in a single local browser dashboard.**
+**Investment News is a global industry-news dashboard built for China A-share investors.** Semiconductors, AI, robotics, EVs, space — these 12 sectors map directly onto A-share themes, and the leading signals that drive them usually surface first in global English-language sources. The tool covers 100+ authoritative sources worldwide, calls your own LLM to distill each sector's latest developments into a daily set of key points (in Chinese) with translations, presented in a single local browser dashboard.
 
 Unlike a typical news aggregator that buries you in feeds, its core is **having the AI do the reading and distillation**: 3–5 "today's key points" pinned at the top of each sector, aggregated and deduplicated across sources, so you can grasp each sector at a glance and drill down to the original when needed. Fetching runs **locally** (pure Python stdlib); the AI uses **your own** Claude subscription ($0) or any API key; **data stays on your machine — no account, no hosting.**
 
 When it helps:
 
+- You invest in China A-shares and want to track the global leading signals behind sectors like semiconductors, AI, EVs, and robotics — but the overseas coverage is mostly English and scattered across hundreds of sources.
 - You need to track several investment sectors at once, but the news is overwhelming, hard to read in full, and mostly in English.
 - Portals and aggregators give you a stream of disconnected items; what you actually want is "the core developments in this sector today" — exactly what the AI key-points layer delivers.
 
