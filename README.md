@@ -28,15 +28,6 @@
 
 ---
 
-## 寻找深圳的 AI 工作机会
-
-作者目前正在寻找深圳的 AI 相关工作机会，重点关注腾讯等大型科技企业及金融机构的 **AI 投研产品、FDE 与 AI 咨询 / 解决方案岗位**。
-
-兼具金融机构从业经历与 AI 产品实战，持续构建金融市场数据工具和多智能体系统，开源项目累计获得 **17K+ GitHub Stars**。
-
-联系：[simonlin0423@gmail.com](mailto:simonlin0423@gmail.com)
-
----
 
 ## 这是什么
 
@@ -192,14 +183,6 @@ investment-news/
 - **结论仅供参考**：本工具属**资讯聚合**，所呈现的是行业动向与领先信号，**不构成任何投资建议**；据此决策的后果由使用者自行承担。
 
 本软件依 [MIT 许可](LICENSE) 以「现状」提供，不附带任何形式的担保。
-
-## 赞赏
-
-如果这个工具帮到了你，欢迎请作者喝杯咖啡。
-
-<p align="center">
-  <a href="https://buymeacoffee.com/simonlin1212"><img src="./assets/bmc-qr.png" width="180" alt="Buy Me a Coffee"></a>
-</p>
 
 ## License
 
