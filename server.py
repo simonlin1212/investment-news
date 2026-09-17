@@ -6,11 +6,14 @@
   (用 llm.config.json 配的大模型出「今日要点」+翻译),完成后返回 JSON。前端按钮转圈等它。
 跑法: python3 server.py [port]   默认 8793
 """
-import os, sys, json, subprocess
+import os, sys, json, subprocess, secrets, hmac
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8793
+# /api/refresh 会跑昂贵的子进程(抓取+调用大模型),即便只绑回环也要防本机其它
+# 用户/进程随意触发消耗配额,所以要求携带启动时生成的一次性令牌。
+REFRESH_TOKEN = secrets.token_urlsafe(32)
 
 
 def child_env():
