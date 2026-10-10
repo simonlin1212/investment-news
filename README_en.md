@@ -91,10 +91,15 @@ The entire pipeline is **pure Python stdlib + one LLM** — no database, no RSSH
 
 Edit `llm.config.json`:
 
-| provider | Description | Cost |
-|---|---|---|
-| **`claude-cli` (default)** | Uses your logged-in **Claude Code subscription** (`claude login` once), local-only | **$0** |
-| **`api`** | Any **OpenAI-compatible API** (DeepSeek / OpenAI / SiliconFlow / OpenRouter…), runs anywhere | usage-based |
+<table>
+<thead>
+<tr><th nowrap width="200">provider</th><th>Description</th><th nowrap>Cost</th></tr>
+</thead>
+<tbody>
+<tr><td nowrap><strong><code>claude-cli</code> (default)</strong></td><td>Uses your logged-in <strong>Claude Code subscription</strong> (<code>claude login</code> once), local-only</td><td nowrap><strong>$0</strong></td></tr>
+<tr><td nowrap><strong><code>api</code></strong></td><td>Any <strong>OpenAI-compatible API</strong> (DeepSeek / OpenAI / SiliconFlow / OpenRouter…), runs anywhere</td><td nowrap>usage-based</td></tr>
+</tbody>
+</table>
 
 ```jsonc
 { "provider": "claude-cli" }                       // subscription — nothing else to fill

@@ -120,10 +120,15 @@ sources.json  (108 个源 / 12 赛道)
 
 编辑 `llm.config.json`：
 
-| provider | 说明 | 成本 |
-|---|---|---|
-| **`claude-cli`（默认）** | 使用本机已登录的 **Claude Code 订阅**（仅需 `claude login` 一次），本地可用 | **$0** |
-| **`api`** | 任意 **OpenAI 兼容 API**（DeepSeek / OpenAI / 硅基流动 / OpenRouter…），任意环境可用 | 按量计费 |
+<table>
+<thead>
+<tr><th nowrap width="200">provider</th><th>说明</th><th nowrap>成本</th></tr>
+</thead>
+<tbody>
+<tr><td nowrap><strong><code>claude-cli</code>（默认）</strong></td><td>使用本机已登录的 <strong>Claude Code 订阅</strong>（仅需 <code>claude login</code> 一次），本地可用</td><td nowrap><strong>$0</strong></td></tr>
+<tr><td nowrap><strong><code>api</code></strong></td><td>任意 <strong>OpenAI 兼容 API</strong>（DeepSeek / OpenAI / 硅基流动 / OpenRouter…），任意环境可用</td><td nowrap>按量计费</td></tr>
+</tbody>
+</table>
 
 ```jsonc
 { "provider": "claude-cli" }                       // 使用订阅，无需额外配置
