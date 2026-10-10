@@ -19,14 +19,6 @@
 
 ---
 
-**看机会 · Open to Opportunities｜深圳 · 香港 · 远程**
-
-我是 Simon，专注于 AI Agent 与实用工具开发，目前在看深圳、香港或远程的机会，欢迎联系：[simonlin0423@gmail.com](mailto:simonlin0423@gmail.com)
-
-I'm Simon, building AI agents and practical tools. Currently open to opportunities in Shenzhen, Hong Kong, or remote — feel free to reach out: [simonlin0423@gmail.com](mailto:simonlin0423@gmail.com)
-
----
-
 <p align="center">
   <a href="#这是什么">这是什么</a> ·
   <a href="#能力-features">能力</a> ·

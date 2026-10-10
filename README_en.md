@@ -164,9 +164,3 @@ Provided "as is" under the [MIT License](LICENSE), without warranty of any kind.
 A local dashboard that distills global industry news into key points. PRs welcome for more sectors and sources.
 
 **Author:** Simon Lin · X [@linsizhen](https://x.com/linsizhen) · Email: [simonlin0423@gmail.com](mailto:simonlin0423@gmail.com)
-
----
-
-**Open to Opportunities · 看机会｜Shenzhen · Hong Kong · Remote**
-
-I'm Simon, building AI agents and practical tools. Currently open to opportunities in Shenzhen, Hong Kong, or remote — feel free to reach out: [simonlin0423@gmail.com](mailto:simonlin0423@gmail.com)
