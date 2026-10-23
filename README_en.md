@@ -73,7 +73,7 @@ open http://localhost:8793   # Windows: start, Linux: xdg-open
 ## How It Works
 
 ```
-sources.json  (108 sources / 12 sectors)
+sources.json  (106 sources / 12 sectors)
        │
        ▼  scripts/fetch.py    fetch + compliance filter + recent-N-days + Beijing time
   data.js  (raw items)
@@ -110,7 +110,7 @@ Edit `llm.config.json`:
 
 ## Sectors & Sources
 
-12 sectors, 108 curated sources — **authoritative English media and Chinese vertical media in balance**, e.g.:
+12 sectors, 106 curated sources — **authoritative English media and Chinese vertical media in balance**, e.g.:
 
 - **AI**: OpenAI · Google Research · Hugging Face · QbitAI · Synced · MIT Tech Review
 - **Semiconductors**: DIGITIMES · SemiAnalysis · IEEE Spectrum · EE Times · Semiconductor Engineering
@@ -137,7 +137,7 @@ Add a line to the `sources` array in `sources.json` — no code changes:
 investment-news/
 ├── index.html          browser dashboard (sidebar 12 sectors + key points + bilingual list + refresh)
 ├── server.py           local server + /api/refresh
-├── sources.json        108 sources / 12 sectors / compliance words
+├── sources.json        106 sources / 12 sectors / compliance words
 ├── llm.config.json     LLM provider (subscription / API)
 ├── data.js             generated data (fetch + digest output)
 ├── scripts/

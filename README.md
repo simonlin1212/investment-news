@@ -102,7 +102,7 @@ python3 server.py
 ## 工作原理
 
 ```
-sources.json  (108 个源 / 12 赛道)
+sources.json  (106 个源 / 12 赛道)
        │
        ▼  scripts/fetch.py    抓取 + 合规过滤 + 最近 N 天 + 北京时间归一
   data.js  (原始条目)
@@ -139,7 +139,7 @@ sources.json  (108 个源 / 12 赛道)
 
 ## 覆盖赛道与信息源
 
-12 大赛道、108 个精选源，**英文权威媒体与中文垂直媒体并重**，例如：
+12 大赛道、106 个精选源，**英文权威媒体与中文垂直媒体并重**，例如：
 
 - **AI/大模型**：OpenAI · Google Research · Hugging Face · 量子位 · 机器之心 · 智东西 · MIT Tech Review
 - **半导体/芯片**：DIGITIMES · SemiAnalysis · IEEE Spectrum · EE Times · Semiconductor Engineering
@@ -166,7 +166,7 @@ sources.json  (108 个源 / 12 赛道)
 investment-news/
 ├── index.html          浏览器看板(侧栏 12 赛道 + 今日要点 + 双语列表 + 刷新)
 ├── server.py           本地服务 + /api/refresh
-├── sources.json        108 源 / 12 赛道 / 合规词(调整源即编辑此文件)
+├── sources.json        106 源 / 12 赛道 / 合规词(调整源即编辑此文件)
 ├── llm.config.json     大模型 provider(订阅 / API)
 ├── data.js             生成的数据(fetch + digest 产出)
 ├── scripts/
