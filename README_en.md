@@ -45,7 +45,7 @@ When it helps:
 | **Sourced** | Every key point links to the original article it's primarily based on |
 | **Refresh** | One click in the dashboard triggers fetch + AI; it auto-refreshes on completion — no command line |
 | **Provider** | Local Claude subscription (`claude-cli`, $0) or any OpenAI-compatible API, switched by a single config field |
-| **Local** | Fetching and rendering both run locally; data never leaves your machine — no database, no hosting, no RSSHub |
+| **Local** | Fetching and rendering both run locally — no database, no hosting, no RSSHub. To generate key points, the app sends news headlines (with source and sector names) to the model you choose — Claude Code by default, or your API provider |
 | **Filter** | Built-in keyword filtering removes gambling / prediction markets / crypto / adult content; politics and finance are kept |
 
 ## Screenshot
