@@ -25,7 +25,7 @@
 
 **Investment News is a global industry-news dashboard built for China A-share investors.** Semiconductors, AI, robotics, EVs, space — these 12 sectors map directly onto A-share themes, and the leading signals that drive them usually surface first in global English-language sources. The tool covers 100+ authoritative sources worldwide, calls your own LLM to distill each sector's latest developments into a daily set of key points (in Chinese) with translations, presented in a single local browser dashboard.
 
-Unlike a typical news aggregator that buries you in feeds, its core is **having the AI do the reading and distillation**: 3–5 "today's key points" pinned at the top of each sector, aggregated and deduplicated across sources, so you can grasp each sector at a glance and drill down to the original when needed. Fetching runs **locally** (pure Python stdlib); the AI uses **your own** Claude subscription ($0) or any API key; **data stays on your machine — no account, no hosting.**
+Unlike a typical news aggregator that buries you in feeds, its core is **having the AI do the reading and distillation**: 3–5 "today's key points" pinned at the top of each sector, aggregated and deduplicated across sources, so you can grasp each sector at a glance and drill down to the original when needed. Fetching runs **locally** (pure Python stdlib); the AI uses **your own** Claude subscription ($0) or any API key; **everything is stored on your machine — no account, no hosting.**
 
 When it helps:
 
@@ -156,7 +156,7 @@ investment-news/
 
 ## Responsible Use / Disclaimer
 
-- **Local only**: no hosting, upload, or server side; data stays on your machine.
+- **Local only**: no hosting or remote server; the built-in dashboard server listens on localhost only, and your news library, reports and config are all stored on your machine.
 - **Reads public RSS / endpoints only**, at low frequency, respecting each source's Terms of Service.
 - **For reference only**: this is a **news aggregation** tool presenting industry trends and leading signals — it is **not financial advice**; you act at your own responsibility.
 
