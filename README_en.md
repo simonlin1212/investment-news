@@ -5,7 +5,7 @@
 [中文](README.md) · **English**
 
 <p align="center">
-  <b>Tracking the global industry signals behind China A-share sectors — 12 sectors mapped to A-share themes, 100+ authoritative sources, distilled into daily Chinese key points by your own AI, fully local, zero API key.</b>
+  <b>Tracking the global industry signals behind China A-share sectors — 12 sectors mapped to A-share themes, 100+ authoritative sources, distilled into daily Chinese key points by your own AI, runs locally, zero API keys (uses your Claude Code by default).</b>
 </p>
 
 <p align="center">

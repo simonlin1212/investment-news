@@ -3,8 +3,8 @@
 <h1 align="center">Investment News · 投资资讯</h1>
 
 <p align="center">
-  <b>为 A股投资者追踪全球产业链领先信号 —— 12 大赛道一一对应 A股板块，覆盖 100+ 权威源，AI 每日提炼为中文要点，全程本地、零 API key。</b><br>
-  Tracking the global industry signals behind China A-share sectors — 12 sectors mapped to A-share themes, 100+ authoritative sources, distilled into daily Chinese key points by your own AI, fully local, zero API key.
+  <b>为 A股投资者追踪全球产业链领先信号 —— 12 大赛道一一对应 A股板块，覆盖 100+ 权威源，AI 每日提炼为中文要点，本地运行、零 API key（默认直接用你的 Claude Code）。</b><br>
+  Tracking the global industry signals behind China A-share sectors — 12 sectors mapped to A-share themes, 100+ authoritative sources, distilled into daily Chinese key points by your own AI, runs locally, zero API keys (uses your Claude Code by default).
 </p>
 
 <p align="center">
