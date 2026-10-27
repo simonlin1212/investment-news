@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.0.4
+
+说明文档更正 —— 程序没有改动，README 和 SKILL.md 的说法改得更准确。
+
+- **写清楚数据去向**：抓取和看板都在本机运行；生成「今日要点」时，程序会把新闻
+  标题（附来源和赛道名）发给你选的模型——默认 Claude Code，或你配置的 API
+  服务商。新闻库、报告和配置都存在本机。原来写的「数据全程留存本机」不准确，
+  README 和 SKILL.md 描述都已改正。
+  *docs: state plainly that headlines (with source and sector) are sent to your
+  chosen model when generating key points; the news store, reports and config
+  stay on your machine.*
+- **源数量更正为 106**，和 `sources.json` 实际一致（原来写 108）。
+  *docs: source count corrected to 106, matching sources.json.*
+- README 首屏写明「默认直接用你的 Claude Code」；provider 表格改成不换行，标签列
+  不再被挤成竖排；删去赞赏段落。
+  *docs: first screen notes Claude Code is used by default; provider table no
+  longer wraps; donation section removed.*
+
+---
+
 ## 1.0.3
 
 去重基准时间修复 —— 同名栏目窗口外复现后，更旧的窗内转载不再逃过去重。
